@@ -1,0 +1,20 @@
+Solution
+--------
+
+Test homepage:
+
+    >>> from server import app
+    >>> client = app.test_client()
+
+    >>> r = client.get("/")
+    >>> assert "This is the home page" in str(r.data), r.data
+
+Test hello:
+
+    >>> r =  client.get("/hello")
+    >>> assert "Hi There!" in str(r.data), r.data
+
+Test greet:
+
+    >>> r = client.get("/greet?person=Joel&compliment=cool")
+    >>> assert "Hi, Joel! I think you're" in str(r.data), r.data

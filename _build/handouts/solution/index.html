@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Solution | Devmountain Foundations</title>
+
+      <link
+        href="../_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="../_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+      <script src="../_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Solution</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Solution</a><ul>
+<li><a class="reference internal" href="#further-study">Further Study</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="solution">
+<h1>Solution</h1>
+<p>There are many ways to do the form that gets the compliment. This is one.</p>
+<div class="literal-block-wrapper docutils container" id="flask-1-sol">
+<div class="code-block-caption"><span class="caption-text">server.py</span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Greeting Flask app.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="c1"># &quot;__name__&quot; is a special Python variable for the name of the current module</span>
+<span class="c1"># Flask wants to know this to know what any imported things are relative to.</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">AWESOMENESS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;terrific&#39;</span><span class="p">,</span> <span class="s1">&#39;fantastic&#39;</span><span class="p">,</span> <span class="s1">&#39;neato&#39;</span><span class="p">,</span> <span class="s1">&#39;fantabulous&#39;</span><span class="p">,</span> <span class="s1">&#39;wowza&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;oh-so-not-meh&#39;</span><span class="p">,</span> <span class="s1">&#39;brilliant&#39;</span><span class="p">,</span> <span class="s1">&#39;ducky&#39;</span><span class="p">,</span> <span class="s1">&#39;coolio&#39;</span><span class="p">,</span> <span class="s1">&#39;incredible&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wonderful&#39;</span><span class="p">,</span> <span class="s1">&#39;smashing&#39;</span><span class="p">,</span> <span class="s1">&#39;lovely&#39;</span><span class="p">]</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">start_here</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home page.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Start Here&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;a href=&quot;/hello&quot;&gt;Take me to the start&lt;/a&gt;</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/hello&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Say hello and prompt for user&#39;s name.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Hi There!&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;Hi There!&lt;/h1&gt;</span>
+<span class="s2">        &lt;form action=&quot;/greet&quot; method=&#39;GET&#39;&gt;</span>
+<span class="s2">          What&#39;s your name? &lt;input type=&quot;text&quot; name=&quot;person&quot;&gt;</span>
+<span class="s2">          What compliment would you like?</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;awesome&quot;&gt;Awesome&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;terrific&quot;&gt;Terrific&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;fantastic&quot;&gt;Fantastic&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;neato&quot;&gt;Neato&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;fantabulous&quot;&gt;Fantabulous&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;wowza&quot;&gt;Wowza&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;oh-so-not-meh&quot;&gt;Oh-so-not-meh&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;brilliant&quot;&gt;Brilliant&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;ducky&quot;&gt;Ducky&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;coolio&quot;&gt;Coolio&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;incredible&quot;&gt;Incredible&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;wonderful&quot;&gt;Wonderful&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;smashing&quot;&gt;Smashing&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;compliment&quot; value=&quot;lovely&quot;&gt;Lovely&lt;br&gt;</span>
+<span class="s2">          &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/greet&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">greet_person</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get user by name.&quot;&quot;&quot;</span>
+
+    <span class="n">player</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;person&quot;</span><span class="p">)</span>
+    <span class="n">compliment</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compliment&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;A Compliment&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        Hi, </span><span class="si">{</span><span class="n">player</span><span class="si">}</span><span class="s2">! I think you&#39;re </span><span class="si">{</span><span class="n">compliment</span><span class="si">}</span><span class="s2">!</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># debug=True gives us error messages in the browser and also &quot;reloads&quot;</span>
+    <span class="c1"># our web app if we change the code.</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section class="section" id="further-study">
+<h2>Further Study</h2>
+<div class="literal-block-wrapper docutils container" id="flask-1-sol-fs">
+<div class="code-block-caption"><span class="caption-text">server_further_study.py</span></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Greeting Flask app.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+
+<span class="c1"># &quot;__name__&quot; is a special Python variable for the name of the current module</span>
+<span class="c1"># Flask wants to know this to know what any imported things are relative to.</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">AWESOMENESS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;terrific&#39;</span><span class="p">,</span> <span class="s1">&#39;fantastic&#39;</span><span class="p">,</span> <span class="s1">&#39;neato&#39;</span><span class="p">,</span> <span class="s1">&#39;fantabulous&#39;</span><span class="p">,</span> <span class="s1">&#39;wowza&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;oh-so-not-meh&#39;</span><span class="p">,</span> <span class="s1">&#39;brilliant&#39;</span><span class="p">,</span> <span class="s1">&#39;ducky&#39;</span><span class="p">,</span> <span class="s1">&#39;coolio&#39;</span><span class="p">,</span> <span class="s1">&#39;incredible&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;wonderful&#39;</span><span class="p">,</span> <span class="s1">&#39;smashing&#39;</span><span class="p">,</span> <span class="s1">&#39;lovely&#39;</span><span class="p">]</span>
+
+<span class="n">MEANNESS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;stinky&#39;</span><span class="p">,</span> <span class="s1">&#39;warty&#39;</span><span class="p">,</span> <span class="s1">&#39;lame&#39;</span><span class="p">,</span> <span class="s1">&#39;covered in boils&#39;</span><span class="p">,</span> <span class="s1">&#39;a CLOWN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;blander than oatmeal&#39;</span><span class="p">,</span> <span class="s1">&#39;the absolute worst&#39;</span><span class="p">,</span> <span class="s1">&#39;an utter fool&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;the least stealthy ninja ever&#39;</span><span class="p">]</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">start_here</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Home page.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Start Here&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;a href=&quot;/hello&quot;&gt;Take me to the start&lt;/a&gt;</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/hello&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Say hello and prompt for compliments.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Hi There!&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;Hi There!&lt;/h1&gt;</span>
+<span class="s2">        &lt;form action=&#39;/process-hello&#39;&gt;</span>
+<span class="s2">          Would you rather be complimented or insulted?</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;niceormean&quot; value=&quot;nice&quot;&gt;A compliment, please!</span>
+<span class="s2">          &lt;input type=&quot;radio&quot; name=&quot;niceormean&quot; value=&quot;mean&quot;&gt;I&#39;ll take an insult. CLOWN.</span>
+<span class="s2">          &lt;input type=&quot;submit&quot;&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/process-hello&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">process_hello</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Decide whether to send the user to choose insults or compliments.&quot;&quot;&quot;</span>
+
+    <span class="n">nice_or_mean</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;niceormean&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">nice_or_mean</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
+        <span class="n">levels_form</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;!doctype html&gt;</span>
+<span class="s2">        &lt;html&gt;</span>
+<span class="s2">          &lt;head&gt;</span>
+<span class="s2">            &lt;title&gt;Insult Level&lt;/title&gt;</span>
+<span class="s2">          &lt;/head&gt;</span>
+<span class="s2">          &lt;body&gt;</span>
+<span class="s2">            &lt;h2&gt;Choose Your Insult Level:&lt;/h2&gt;</span>
+<span class="s2">            &lt;form action=&quot;/select/insult&quot;&gt;</span>
+<span class="s2">              &lt;select name=&quot;level&quot;&gt;</span>
+<span class="s2">                &lt;option value=&quot;1&quot;&gt;Only a little bit.&lt;/option&gt;</span>
+<span class="s2">                &lt;option value=&quot;2&quot;&gt;I&#39;d like my insult to be medium-meanness.&lt;/option&gt;</span>
+<span class="s2">                &lt;option value=&quot;3&quot;&gt;Do your worst!&lt;/option&gt;</span>
+<span class="s2">              &lt;/select&gt;</span>
+<span class="s2">              &lt;br&gt;</span>
+<span class="s2">              &lt;input type=&quot;submit&quot;&gt;</span>
+<span class="s2">            &lt;/form&gt;</span>
+<span class="s2">          &lt;/body&gt;</span>
+<span class="s2">        &lt;/html&gt;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+    <span class="k">elif</span> <span class="n">nice_or_mean</span> <span class="o">==</span> <span class="s2">&quot;nice&quot;</span><span class="p">:</span>
+        <span class="n">levels_form</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;!doctype html&gt;</span>
+<span class="s2">        &lt;html&gt;</span>
+<span class="s2">          &lt;head&gt;</span>
+<span class="s2">            &lt;title&gt;Compliment Level&lt;/title&gt;</span>
+<span class="s2">          &lt;/head&gt;</span>
+<span class="s2">          &lt;body&gt;</span>
+<span class="s2">            &lt;h2&gt;Choose Your Compliment Level:&lt;/h2&gt;</span>
+<span class="s2">            &lt;form action=&quot;/select/compliment&quot;&gt;</span>
+<span class="s2">              &lt;select name=&quot;level&quot;&gt;</span>
+<span class="s2">                &lt;option value=&quot;1&quot;&gt;Just say something nice.&lt;/option&gt;</span>
+<span class="s2">                &lt;option value=&quot;2&quot;&gt;I&#39;d like a middle-of-the-road compliment.&lt;/option&gt;</span>
+<span class="s2">                &lt;option value=&quot;3&quot;&gt;Say something really flattering!&lt;/option&gt;</span>
+<span class="s2">              &lt;/select&gt;</span>
+<span class="s2">              &lt;br&gt;</span>
+<span class="s2">              &lt;input type=&quot;submit&quot;&gt;</span>
+<span class="s2">            &lt;/form&gt;</span>
+<span class="s2">          &lt;/body&gt;</span>
+<span class="s2">        &lt;/html&gt;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">levels_form</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/select/insult&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">display_insult_form</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Let the user choose their insult level.&quot;&quot;&quot;</span>
+
+    <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">))</span>
+
+    <span class="c1"># Generate HTML options, so we don&#39;t have to create each one by hand. (You</span>
+    <span class="c1"># could also write a helper function and call it.)</span>
+
+    <span class="n">option_template</span> <span class="o">=</span> <span class="s1">&#39;&lt;option value=&quot;</span><span class="si">{insult}</span><span class="s1">&quot;&gt;</span><span class="si">{insult}</span><span class="s1">&lt;/option&gt;&#39;</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">option_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">insult</span><span class="o">=</span><span class="n">insult</span><span class="p">)</span> <span class="k">for</span> <span class="n">insult</span> <span class="ow">in</span> <span class="n">MEANNESS</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="p">]</span>
+
+    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">option_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">insult</span><span class="o">=</span><span class="n">insult</span><span class="p">)</span> <span class="k">for</span> <span class="n">insult</span> <span class="ow">in</span> <span class="n">MEANNESS</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+        <span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">option_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option_template</span><span class="o">.</span><span class="n">insult</span><span class="p">(</span><span class="n">insult</span><span class="o">=</span><span class="n">insult</span><span class="p">)</span> <span class="k">for</span> <span class="n">insult</span> <span class="ow">in</span> <span class="n">MEANNESS</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+        <span class="p">]</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Choose Insult&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;Oh. It&#39;s You.&lt;/h1&gt;</span>
+
+<span class="s2">        &lt;h3&gt;Fill out this dinky form and choose something rude.&lt;/h3&gt;</span>
+<span class="s2">        </span>
+<span class="s2">        &lt;form action=&quot;/diss&quot;&gt;</span>
+<span class="s2">          What&#39;s your name? &lt;input type=&quot;text&quot; name=&quot;person&quot;&gt;</span>
+<span class="s2">          Choose an insult:</span>
+<span class="s2">          &lt;select name=&quot;insult&quot;&gt;</span>
+<span class="s2">            </span><span class="si">{</span><span class="n">option_elements</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &lt;/select&gt;</span>
+<span class="s2">          &lt;input type=&quot;submit&quot; value=&quot;Take Me to My Insult!&quot;&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/select/compliment&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">display_compliment_form</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Let the user choose a compliment level.&quot;&quot;&quot;</span>
+
+    <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">))</span>
+
+    <span class="c1"># Generate HTML options, so we don&#39;t have to create each one by hand. (You</span>
+    <span class="c1"># could also write a helper function and call it.)</span>
+
+    <span class="n">option_template</span> <span class="o">=</span> <span class="s1">&#39;&lt;option value=&quot;</span><span class="si">{comp}</span><span class="s1">&quot;&gt;</span><span class="si">{comp}</span><span class="s1">&lt;/option&gt;&#39;</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">option_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comp</span><span class="o">=</span><span class="n">comp</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">AWESOMENESS</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="p">]</span>
+
+    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">option_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comp</span><span class="o">=</span><span class="n">comp</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">AWESOMENESS</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+        <span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">option_elements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">option_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comp</span><span class="o">=</span><span class="n">comp</span><span class="p">)</span> <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">AWESOMENESS</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+        <span class="p">]</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Choose Compliment&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;h1&gt;Hooray, It&#39;s You!&lt;/h1&gt;</span>
+
+<span class="s2">        &lt;h3&gt;Fill out this lil form and choose your compliment. :)&lt;/h3&gt;</span>
+<span class="s2">        </span>
+<span class="s2">        &lt;form action=&quot;/greet&quot;&gt;</span>
+<span class="s2">          What&#39;s your name? &lt;input type=&quot;text&quot; name=&quot;person&quot;&gt;</span>
+<span class="s2">          Choose a compliment:</span>
+<span class="s2">          &lt;select name=&quot;compliment&quot;&gt;</span>
+<span class="s2">            </span><span class="si">{</span><span class="n">option_elements</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">          &lt;/select&gt;</span>
+<span class="s2">          &lt;input type=&quot;submit&quot; value=&quot;Take Me to My Compliment!&quot;&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/greet&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">greet_person</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get user by name, get compliment, and say something nice.&quot;&quot;&quot;</span>
+
+    <span class="n">player</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;person&quot;</span><span class="p">)</span>
+    <span class="n">compliment</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compliment&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;A Compliment&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        Hi, </span><span class="si">{</span><span class="n">player</span><span class="si">}</span><span class="s2">! I think you&#39;re </span><span class="si">{</span><span class="n">compliment</span><span class="si">}</span><span class="s2">!</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/diss&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">diss_person</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get user by name, get insult, and mock according to insult level.&quot;&quot;&quot;</span>
+
+    <span class="n">player</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;person&quot;</span><span class="p">)</span>
+    <span class="n">insult</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;insult&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;!doctype html&gt;</span>
+<span class="s2">    &lt;html&gt;</span>
+<span class="s2">      &lt;head&gt;</span>
+<span class="s2">        &lt;title&gt;Oh. It&#39;s You.&lt;/title&gt;</span>
+<span class="s2">      &lt;/head&gt;</span>
+<span class="s2">      &lt;body&gt;</span>
+<span class="s2">        &lt;p&gt;</span>
+<span class="s2">          Hi, </span><span class="si">{</span><span class="n">player</span><span class="si">}</span><span class="s2">! I think you&#39;re </span><span class="si">{</span><span class="n">insult</span><span class="si">}</span><span class="s2">. Pfffffft.</span>
+<span class="s2">        &lt;/p&gt;</span>
+<span class="s2">      &lt;/body&gt;</span>
+<span class="s2">    &lt;/html&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># debug=True gives us error messages in the browser and also &quot;reloads&quot;</span>
+    <span class="c1"># our web app if we change the code.</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2021 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="../_static/main.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+  </body>
+</html>

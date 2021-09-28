@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Further Study | Devmountain Foundations</title>
+
+      <link
+        href="../_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="../_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+
+      <script src="../_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Further Study</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Further Study</a><ul>
+<li><a class="reference internal" href="#even-further-study">Even Further Study</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="further-study">
+<h1>Further Study</h1>
+<ul class="simple">
+<li><p>You might have hard-coded all your compliments/insults into the HTML that
+was returned from your route(s). Using Python, generate a string of valid
+HTML that includes all the inputs from your list of compliments or
+insults. Appreciate how much of a pain this is, and look forward to when
+we learn a much much better way of doing this.</p></li>
+<li><p>Embellish your form with other input types and integrate the new
+information that you get from your user into your response.</p></li>
+</ul>
+<p>If you’ve gotten this far, you now have a lot of HTML as a string inside
+Python. Appreciate how awful this is, and look forward to when we learn
+a better structure for our Flask app that helps us separate these
+different languages and then pulls them all together for us at the end.</p>
+<section class="section" id="even-further-study">
+<h2>Even Further Study</h2>
+<p>Add a feature to your compliment/insult generator that lets users decide how
+nicely complimented or meanly insulted they’d like to be before they choose a
+compliment or insult to receive. Users should be able to choose one of a few
+levels of niceness or meanness.</p>
+<p>The compliments or insults a user can choose from should depend on the level they
+selected.</p>
+<p>Your user flow could look something like this:</p>
+<div class="resizer" style="40%"><div class="graphviz"><object data="../_images/graphviz-f5e611eb54fcac5aa4fae1fc14d37192fb0b56fc.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph uxflow {
+rankdir=TB;
+
+page1 [label=&quot;Take me to the start&quot; shape=&quot;box&quot;];
+page2 [label=&lt;Do you want a &lt;BR/&gt; compliment or an insult?&gt; height=2 shape=&quot;box&quot;];
+page3 [label=&quot;Choose Your Compliment Level&quot; shape=&quot;box&quot;];
+page4 [label=&quot;Choose Your Insult Level&quot; shape=&quot;box&quot;];
+page5 [label=&quot;Choose Insult&quot; shape=&quot;box&quot;];
+page6 [label=&quot;Choose Compliment&quot; shape=&quot;box&quot;];
+page7 [label=&quot;A Compliment&quot; shape=&quot;box&quot;];
+page8 [label=&quot;An Insult&quot; shape=&quot;box&quot;];
+
+page1 -&gt; page2 -&gt; page3 -&gt; page6 -&gt; page7
+page2 -&gt; page4 -&gt; page5 -&gt; page8
+}</p></object></div>
+</div></section>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2021 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="../_static/main.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+  </body>
+</html>

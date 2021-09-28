@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Flask Intro | Devmountain Foundations</title>
+
+      <link
+        href="_static/pygments.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link href="_static/devmountain.css" rel="stylesheet" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+          <link rel="stylesheet" type="text/css" href="_static/devmountain.css" />
+          <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+          <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+
+      <script src="_static/pdfobject.min.js"></script>
+      
+  </head>
+  <body>
+      <div id="handouts-container">
+        <header id="page-header">
+            <p id="project-title">Devmountain Foundations</p>
+            <p id="page-title">Flask Intro</p>
+              <p id="backlink">
+                <a href="/"> &laquo; Back to Homepage </a>
+              </p>
+        </header>
+
+        <nav id="page-toc"><ul>
+<li><a class="reference internal" href="#">Flask Intro</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#step-1-getting-started">Step 1: Getting Started</a><ul>
+<li><a class="reference internal" href="#creating-a-virtual-environment">Creating a Virtual Environment</a></li>
+<li><a class="reference internal" href="#adding-flask">Adding Flask</a></li>
+<li><a class="reference internal" href="#telling-git-to-ignore-env">Telling Git to Ignore <cite>env</cite></a></li>
+<li><a class="reference internal" href="#keeping-track-of-project-requirements">Keeping Track of Project Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-2-using-flask">Step 2: Using Flask</a><ul>
+<li><a class="reference internal" href="#launch-your-server">Launch Your Server</a></li>
+<li><a class="reference internal" href="#modify-your-views">Modify Your Views</a><ul>
+<li><a class="reference internal" href="#make-the-hello-route-easier-to-access">Make the <cite>/hello</cite> Route Easier to Access</a></li>
+<li><a class="reference internal" href="#allow-users-to-choose-their-compliments">Allow Users to Choose Their Compliments</a></li>
+<li><a class="reference internal" href="#get-acquainted-with-the-debugger">Get Acquainted with the Debugger</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pattern-matching">Pattern Matching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+
+        <main id="page-content">
+            <section class="section" id="flask-intro">
+<h1>Flask Intro</h1>
+<p>In this exercise you’ll use an existing file to run a simple web application.
+To do this, you’ll need to set up a virtual environment and install the
+Flask library.</p>
+<section class="section" id="setup">
+<h2>Setup</h2>
+<p>Download the materials for this exercise <a class="reference external" href="https://ed.devmountain.com/materials/exercises/flask-intro.zip">here</a>.</p>
+</section>
+<section class="section" id="step-1-getting-started">
+<h2>Step 1: Getting Started</h2>
+<p>This section will guide you through setting up everything you need to run the
+code for this lab. You’ll want to follow similar steps when you start just about
+any Python project, so do read carefully and follow the instructions as they
+come up to get more comfortable with the commands.</p>
+<section class="section" id="creating-a-virtual-environment">
+<h3>Creating a Virtual Environment</h3>
+<p>Since you’ll be using an add-on Python library, let’s first create a <em>virtual
+environment</em> so that you won’t have to install the library system-wide. Using a
+virtual environment is also a good practice for creating larger projects, where
+you’ll want to make sure to keep a list of the requirements for the project
+with the code files.</p>
+<p>Go to your terminal, and start by making sure you’re in the correct project
+directory:</p>
+<pre class="console literal-block">$ <span class="cmd">pwd</span>
+/home/user/src/flask-intro</pre>
+<p>For this project, you should be in the <cite>flask-intro</cite> directory that you downloaded
+at the beginning of this exercise. If you aren’t in that directory, navigate there
+now.</p>
+<p>When you’re in your project directory, create a virtual environment called <cite>env</cite>
+with the following command:</p>
+<pre class="console literal-block">$ <span class="cmd">virtualenv env</span></pre>
+<p>Just creating the virtual environment isn’t enough, though. To install libraries
+in that virtual environment, you’ll want to make sure you’re using it:</p>
+<pre class="console literal-block">$ <span class="cmd">source env/bin/activate</span>
+(env) $</pre>
+<p>Once you see <cite>(env)</cite> in your prompt, you should be good to go.</p>
+</section>
+<section class="section" id="adding-flask">
+<h3>Adding Flask</h3>
+<p>Now, you’ll want to use the Python Installer Program, <cite>pip</cite>, to
+install the library you’ll need for this lab. That library is called <cite>flask</cite>.
+Let’s install it now:</p>
+<pre class="console literal-block">(env) $ <span class="cmd">pip3 install install Flask</span>
+<span class="gray">...(messages and progress bars)...</span>
+Successfully installed flask Werkzeug Jinja2 itsdangerous markupsafe click
+Cleaning up...</pre>
+<p>Your output should show a bunch of messages about collecting and downloading
+<cite>flask</cite> and a few other libraries and then tell you which versions of those
+libraries were installed. Success!</p>
+</section>
+<section class="section" id="telling-git-to-ignore-env">
+<h3>Telling Git to Ignore <cite>env</cite></h3>
+<p>Now would be a great time to start using version control for this project. If
+you haven’t already, go ahead and initialize a Git repository.</p>
+<pre class="console literal-block">$ <span class="cmd">git init</span></pre>
+<p>Run <cite>git status</cite> now to see what files Git is looking at. You should see two
+untracked files: <cite>env</cite> and <cite>server.py</cite>.</p>
+<p>You’ll want add <cite>server.py</cite> to your Git repo, but not <cite>env</cite>, which is
+your actual virtual environment directory. The <cite>env</cite> directory is specific to
+your computer, and it’s also very large, since it contains a separate copy of
+Python-the-program, so it doesn’t belong in version control.</p>
+<p>To avoid checking this directory into Git, create a <cite>.gitignore</cite> file now and
+add <cite>env</cite> to that file. When you’re done, your <cite>.gitignore</cite> should contain:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">.gitignore</span></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>env
+</pre></div>
+</div>
+</div>
+<p>Now, if you run <cite>git status</cite>, Git shouldn’t list the <cite>env</cite> directory
+as something it isn’t tracking. Git should just ignore the directory entirely,
+making it much harder for you to accidentally add <cite>env</cite> to your git repository.</p>
+<p>Remember to add your <cite>.gitignore</cite> file to your repo!</p>
+</section>
+<section class="section" id="keeping-track-of-project-requirements">
+<h3>Keeping Track of Project Requirements</h3>
+<p>It’s a very good idea to keep track of the <em>requirements</em> for your
+project — that is, the libraries your project needs to run. This way,
+when you look at your code a year from now, you’ll remember that you need
+to install the <cite>flask</cite> library and you’ll also know exactly what version
+you used before, in case the library’s contents change.</p>
+<p>To see the libraries installed in an active virtual environment, you can use
+the command <cite>pip</cite> <cite>freeze</cite>. This command will list the names of installed
+libraries as well as their version numbers. Try that now (note that your output
+may differ from the example output below):</p>
+<pre class="console literal-block">(env) $ <span class="cmd">pip3 install freeze</span>
+click==6.7
+Flask==0.12
+Jinja2==2.9.4
+MarkupSafe==0.23
+Werkzeug==0.11.15
+itsdangerous==0.24
+wsgiref==0.1.2</pre>
+<p>In the output, you should see the libraries that were installed in the “Adding
+Flask” section. Pretty handy, right?</p>
+<p>Despite the name, though, <cite>pip</cite> <cite>freeze</cite> doesn’t actually “freeze” the libraries
+being used. It only lists the libraries and their exact versions.</p>
+<p>Right now, that information is just going to the terminal. That’s not as useful
+as having the requirements persist somewhere. Fortunately, you
+can redirect that list to a file with the <cite>&gt;</cite> operator in the terminal.</p>
+<p>Let’s run <cite>pip</cite> <cite>freeze</cite> again and redirect the output to a file called
+<cite>requirements.txt</cite>:</p>
+<pre class="console literal-block">(env) $ <span class="cmd">pip3 install freeze &gt; requirements.txt</span></pre>
+<p>If you use the <cite>ls</cite> command to check the contents of your directory, you should
+see your awesome new requirements file listed. If you were to open that file, it
+should match the <cite>pip</cite> <cite>freeze</cite> output.</p>
+<p>Definitely <strong>do</strong> add <cite>requirements.txt</cite> to your Git repository. That way,
+when you look at this project later, you’ll have in Git information on the
+exact versions needed.</p>
+<div class="admonition note">
+<p class="admonition-title">Installing Libraries From requirements.txt</p>
+<div class="admonition-body docutils container">
+<p>The <cite>pip</cite> program can install libraries directly from the <cite>requirements.txt</cite>
+file, too, so it can re-create the exact setup you had when you created the file.</p>
+<p><strong>You DO NOT NEED to do these steps now. These are just useful instructions
+for when you want to set any project up using an existing requirements file.</strong></p>
+<p>For example, if you want to try out your <cite>flask-intro</cite> project on
+your laptop, you could use this <cite>pip</cite> functionality to get your environment
+set up properly.</p>
+<p>First, you’d use <cite>git clone</cite> to pull down your project:</p>
+<pre class="console literal-block">$ <span class="cmd">cd /path/to/where/you/keep/projects/on/your/laptop</span>
+$ <span class="cmd">git clone http://path-to-your-git-repo-at-github.git</span>
+$ <span class="cmd">cd flask-intro</span></pre>
+<p>You’d then create a virtual environment:</p>
+<pre class="console literal-block">$ <span class="cmd">virtualenv env</span></pre>
+<p>Next, you’d activate that environment:</p>
+<pre class="console literal-block">$ <span class="cmd">source env/bin/activate</span></pre>
+<p>Finally, you’d use <cite>pip</cite> to install all of the requirements:</p>
+<pre class="console literal-block">(env) $ <span class="cmd">pip3 install install -r requirements.txt</span></pre>
+<p>The <cite>-r</cite> option lets you supply a text file in the format
+<cite>pip</cite> <cite>freeze</cite> produces. This command should install all of the listed
+libraries.</p>
+<p>To confirm that the correct packages are installed, you’d just run:</p>
+<pre class="console literal-block">(env) $ <span class="cmd">pip3 install freeze</span></pre>
+<p>At this point, you should have a setup on your laptop that is <em>exactly</em> like
+what you had in lab, without having to manually keep track of the
+required libraries.</p>
+</div>
+</div>
+</section>
+</section>
+<section class="section" id="step-2-using-flask">
+<h2>Step 2: Using Flask</h2>
+<p>In this lab, you’ll use the Flask framework to run your web server. You can find
+the documentation for the <cite>flask</cite> library at this link:
+<a class="reference external" href="http://flask.pocoo.org/docs/" target="_blank">Flask documentation</a>.</p>
+<p>You may find it helpful to open the docs in a new tab for easy access now, in
+case you need to look something up.</p>
+<section class="section" id="launch-your-server">
+<h3>Launch Your Server</h3>
+<p>Once you’ve set up your virtual environment, activated it, and installed
+Flask, you should just be able to type:</p>
+<pre class="console literal-block">(env) $ <span class="cmd">python3 server.py</span>
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+* Restarting with stat
+* Debugger is active!
+* Debugger pin code: ...</pre>
+<p>To visit your Flask app, you can open your browser to <cite>http://localhost:5000</cite>.</p>
+<p>The 5000 is the <em>port number</em> that your server is running on. Web servers that
+are deployed on the Internet have special privileges and run on a specific port.
+Since we are working locally, we need to specify the port in the URL bar.
+Flask by default uses port 5000.</p>
+<p>Open your browser and go to <cite>http://localhost:5000</cite>. Now, open <cite>server.py</cite> in
+your editor. Give it a skim, and note the routes and view functions defined.</p>
+<p>Right now, there’s nothing you can click in the browser to reach the view of the
+<cite>say_hello()</cite> function from your homepage. But you <em>can</em> type the correct URL for
+that route directly into the address bar! To see the view for that function, you
+just need to visit the <cite>/hello</cite> route — or, more completely,
+<cite>http://localhost:5000/hello</cite>. Do this now.</p>
+<p>Congratulations: You’re serving a web app with Flask!</p>
+</section>
+<section class="section" id="modify-your-views">
+<h3>Modify Your Views</h3>
+<p>Let’s make some improvements to this program. Open the <cite>server.py</cite> file in
+your editor. To let your server keep running,
+you can open another terminal tab (CTRL + SHIFT + t) or open a new terminal window.</p>
+<section class="section" id="make-the-hello-route-easier-to-access">
+<h4>Make the <cite>/hello</cite> Route Easier to Access</h4>
+<p>It seems silly to not be able to reach <cite>/hello</cite> without typing it into the address bar.
+Let’s fix that by adding some HTML. Add a link (<code class="docutils literal notranslate"><span class="pre">&lt;a&gt;</span></code>) to the HTML returned by
+the <cite>/</cite> route so that when you click the link, you’re taken to <cite>/hello</cite>.</p>
+<p>After you save this change, you should be able to view your new HTML in the browser
+simply by refreshing the page. That’s because you’re running your app in <em>debug mode</em>,
+which tells Flask to detect file changes when you save and restart itself automatically.</p>
+<p>Take a look at the terminal, too. You should see a message about detected changes,
+reloading, and the server restarting.</p>
+</section>
+<section class="section" id="allow-users-to-choose-their-compliments">
+<h4>Allow Users to Choose Their Compliments</h4>
+<p>This part involves editing two routes:</p>
+<ol class="arabic simple">
+<li><p>Modify <cite>/hello</cite> to allow the user to select a compliment from a dropdown menu or
+a radio button.</p></li>
+<li><p>Modify <cite>/greet</cite> to get the compliment via <cite>request.args</cite> and display the compliment
+in the view.</p></li>
+</ol>
+</section>
+<section class="section" id="get-acquainted-with-the-debugger">
+<h4>Get Acquainted with the Debugger</h4>
+<p>Break the <cite>/greet</cite> route by adding a line of code that will raise an error.
+For example, you could add a line like <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span></code>, which would raise an error
+since you have no such variable <cite>x</cite>. Save your code with the error in it, and
+go the <cite>/greet</cite> route in your browser.</p>
+<p>Take a close, careful look at the error page Flask returns when you visit this route.
+Notice how it shows you where the error happened, similar to the output Python
+shows you in the terminal when there’s an error. There is one icon that appears
+on the right hand side of each step in the traceback — can you explain what this
+icon does?</p>
+<img alt="Flask debugger output." src="_images/debugger-output.png" style="width: 40em;" />
+<div class="admonition note">
+<p class="admonition-title">Life Without the Debugger</p>
+<div class="admonition-body docutils container">
+<p>You could disable debug mode by changing this line in <cite>server.py</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you were to set <cite>debug</cite> to <cite>False</cite> and visit <cite>/greet</cite> while there’s an error
+in that route, the error page you receive would be much less verbose about the
+problem.</p>
+<p>While you’re developing an app, a vague error page isn’t very helpful. But if your
+app were deployed online, this output would be much better than giving users
+access to your debug console!</p>
+<p>When you work on Flask apps, we encourage you to keep the debugger
+activated to help you effectively track down pesky bugs.</p>
+<p>If you do turn debug mode off, then when you’re ready turn it back on, you
+will have to restart your server for the change to take effect. That’s
+because once you turn off debug mode, the server stops automatically updating
+as you make changes to files.</p>
+</div>
+</div>
+<p>Go ahead and fix the intentional error you added to the <cite>/greet</cite> route now.</p>
+</section>
+</section>
+<section class="section" id="pattern-matching">
+<h3>Pattern Matching</h3>
+<p>You now have all the example code you need to make your own route that will insult
+users instead. Make another route called <cite>/diss</cite> that dishes out one of several
+insults. Set up a separate form in the HTML returned from <cite>/hello</cite> that goes
+to the <cite>/diss</cite> route.</p>
+<p>After you have done that, if there’s time, you can read the
+<a class="reference external" href="further-study">Further Study exercises</a>.</p>
+</section>
+</section>
+</section>
+
+        </main>
+
+        <footer id="page-footer">
+            <p>&copy; 2021 Devmountain</p>
+        </footer>
+      </div>
+
+      <script src="_static/main.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+  </body>
+</html>
